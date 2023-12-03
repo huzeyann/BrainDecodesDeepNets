@@ -16,7 +16,7 @@
 <iframe width="1932" height="881" src="https://www.youtube.com/embed/WX7V2O6SnN4" title="Brain Decodes Deep Nets" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </details> -->
 
-
+Background: [Algonauts 2023 challenge](http://algonauts.csail.mit.edu/)
 
 We developed a tool for visualizing and analyzing large pre-trained vision models by mapping them onto the brain, thus exposing the model's hidden inside. Our innovation arises from **brain encoding model**: predicting brain fMRI measurements in response to images.
 
@@ -41,13 +41,13 @@ This repository contains:
 * 😎 PyTorch [implementation](brainnet/model.py) of the brain encoding model
 * 🎸 PyTorch Lightning [training script](brainnet/plmodel.py)
 * 🥁 custom [visualization](brainnet/plot_utils.py) and plotting code
-* 😇 [example.ipynb](example.ipynb) only requires **30 min** on RTX4090 to visualize a model.
+* 😇 [example.ipynb](example.ipynb) only requires **30 min** on RTX4090 to train and visualize a model.
 
 
 
 ## Data preparation
 ### Algonauts 2023
-We do not have the right to redistribute the dataset. Please manually download and unzip subj01.zip (4GB) from the [algonauts 2023 challenge](http://algonauts.csail.mit.edu/), please fill in [this form](https://docs.google.com/forms/d/e/1FAIpQLSehZkqZOUNk18uTjRTuLj7UYmRGz-OkdsU25AyO3Wm6iAb0VA/viewform
+We do not have the right to redistribute the dataset. Please manually download and unzip `subj01.zip (4GB)` from the [algonauts 2023 challenge](http://algonauts.csail.mit.edu/), please fill in [this form](https://docs.google.com/forms/d/e/1FAIpQLSehZkqZOUNk18uTjRTuLj7UYmRGz-OkdsU25AyO3Wm6iAb0VA/viewform
 ) to get the download link.
 
 The provided dataset implementation expect the following contents:
@@ -67,6 +67,10 @@ img, fmri = dataset[0]
 ```
 
 ![brain](assets/brain.gif)
+
+
+- Note: this folding brain animation is made by webview function from *[pycortex](https://gallantlab.org/pycortex/)*, the animation is screen recording of static website created by the `cortex.webgl` functions.
+
 
 ## Installation
 The brian encoding model training requires PyTorch 2.0, pytorch-lightning and torchmetrics. The implemented pre-trained models requires dinov2, open_clip, timm, segment_anything. To setup all the required dependencies for brain encoding model and pre-trained models, please follow the instructions below:
@@ -151,8 +155,11 @@ Caching offer speed up by trading memory consumption. `PLModel(cached=True)` wil
 
 ---
 
+## Acknowledgement
+We thank the [Nature Scene Dataset](https://naturalscenesdataset.org/) team and [Algonauts 2023](http://algonauts.csail.mit.edu/) organizers for providing the data. Compute resource is provided by Penn GRASP Laboratory and Penn Image Computing \& Science Laboratory.
+
 ## License
-The code and model weights are licensed under CC-BY-NC. See [`LICENSE.txt`](LICENSE.txt) for details.
+The code and model weights are licensed under CC-BY-NC. See [`LICENSE.txt`](LICENSE.txt) for details. 
 
 ## BibTeX
 
