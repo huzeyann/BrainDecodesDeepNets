@@ -20,8 +20,6 @@ core
 *.hdf5
 *.ckpt
 toy*.py
-*.gif
-*.mp4
 log
 nov23_figs
 *.pt
