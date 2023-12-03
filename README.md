@@ -2,7 +2,7 @@
 ## Brain Decodes Deep Nets <br><sub> PyTorch Implementation</sub>
 
 
-### [📄Paper](http://arxiv.org/abs/TODO) | [▶️Video](https://youtu.be/WX7V2O6SnN4) 
+### [📄Paper](http://arxiv.org/abs/TODO) | [🌐Website](https://huzeyann.github.io/brain-decodes-deep-nets)
 
 ![theory](assets/brainnet.png)
 
@@ -47,7 +47,7 @@ This repository contains:
 
 ## Data preparation
 ### Algonauts 2023
-We do not have the right to redistribute the dataset. Please manually download and unzip subj01.zip from the [algonauts 2023 challenge](http://algonauts.csail.mit.edu/), please fill in [this form](https://docs.google.com/forms/d/e/1FAIpQLSehZkqZOUNk18uTjRTuLj7UYmRGz-OkdsU25AyO3Wm6iAb0VA/viewform
+We do not have the right to redistribute the dataset. Please manually download and unzip subj01.zip (4GB) from the [algonauts 2023 challenge](http://algonauts.csail.mit.edu/), please fill in [this form](https://docs.google.com/forms/d/e/1FAIpQLSehZkqZOUNk18uTjRTuLj7UYmRGz-OkdsU25AyO3Wm6iAb0VA/viewform
 ) to get the download link.
 
 The provided dataset implementation expect the following contents:
