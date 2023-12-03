@@ -1,0 +1,41 @@
+name: brainnet
+channels:
+  - defaults
+  - pytorch
+  - nvidia
+  - xformers
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pytorch::pytorch=2.0.0
+  - pytorch::pytorch-cuda=11.7.0
+  - pytorch::torchvision=0.15.0
+  - numpy
+  - pillow
+  - omegaconf
+  - torchmetrics=0.10.3
+  - fvcore
+  - iopath
+  - xformers::xformers=0.0.18
+  - pip
+  - pip:
+    - git+https://github.com/facebookincubator/submitit
+    - --extra-index-url https://pypi.nvidia.com
+    - cuml-cu11
+    - setuptools
+    - wheel
+    - cython
+    - yacs
+    - pytorch-lightning==1.9.4
+    - matplotlib
+    - colorstamps
+    - nilearn
+    - scipy
+    - fast-pytorch-kmeans
+    - einops
+    - open_clip_torch==2.20.0
+    - git+https://github.com/facebookresearch/segment-anything.git@main
+    - git+https://github.com/facebookresearch/dinov2.git@main
+    - timm==0.9.2
+    - pycortex
+    - brainnet
