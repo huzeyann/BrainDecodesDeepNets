@@ -38,4 +38,4 @@ dependencies:
     - git+https://github.com/facebookresearch/dinov2.git@main
     - timm==0.9.2
     - pycortex
-    - brainnet
+    - git+https://github.com/huzeyann/BrainDecodesDeepNets.git@main
