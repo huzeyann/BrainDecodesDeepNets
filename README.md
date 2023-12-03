@@ -147,6 +147,20 @@ class ModifiedDiNOv2(nn.Module):
 ```
 
 ### Automatic caching
-Caching offer speed up by trading memory consumption. `PLModel(cached=True)` will enable automatic caching of local_tokans and global_tokens returned by the image backbone model. The tokens will only be computed only once and stays in the RAM (not VRAM), a 12-layer 768-dim model takes ~20G of RAM for caching. No cache is stored to the hard disk.
+Caching offer speed up by trading memory consumption. `PLModel(cached=True)` will enable automatic caching of local_tokans and global_tokens returned by the image backbone model. The tokens will be computed only once and stay in the RAM (not VRAM), a 12-layer 768-dim model takes ~20G of RAM for caching. No cache will stored to the hard disk, cache will be deleted after running.
 
 ---
+
+## License
+The code and model weights are licensed under CC-BY-NC. See [`LICENSE.txt`](LICENSE.txt) for details.
+
+## BibTeX
+
+```bibtex
+@article{TODO,
+  title={Brain Decodes Deep Nets},
+  author={Yang, Huzheng and Gee, James and Shi, Jianbo},
+  year={2023},
+  journal={arXiv preprint arXiv:TODO},
+}
+```
