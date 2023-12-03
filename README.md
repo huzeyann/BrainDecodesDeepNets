@@ -33,7 +33,7 @@ Our visualization shows how different training methods matter: they lead to rema
 
 
 ![layer_selectors](assets/layer_selectors.png)
-![channel](assets/channel.png)
+![channel](assets/channel_big.png)
 
 ---
 This repository contains:
