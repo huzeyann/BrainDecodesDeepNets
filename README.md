@@ -2,12 +2,12 @@
 ## Brain Decodes Deep Nets <br><sub> PyTorch Implementation</sub>
 
 
-### [📄Paper](http://arxiv.org/abs/TODO) | [🌐Website](https://huzeyann.github.io/brain-decodes-deep-nets)
+### [📄Paper](https://arxiv.org/abs/2312.01280") | [🌐Website](https://huzeyann.github.io/brain-decodes-deep-nets)
 
 ![theory](assets/brainnet.png)
 
 
-> [**Brain Decodes Deep Nets**](http://arxiv.org/abs/TODO)<br>
+> [**Brain Decodes Deep Nets**](https://arxiv.org/abs/2312.01280")<br>
 > [Huzheng Yang](https://huzeyann.github.io/), [James Gee*](https://www.med.upenn.edu/apps/faculty/index.php/g5455356/p10656), [Jianbo Shi*](https://www.cis.upenn.edu/~jshi/)
 > <br>University of Pennsylvania<br>
 
@@ -47,7 +47,7 @@ This repository contains:
 
 ## Data preparation
 ### Algonauts 2023
-We do not have the right to redistribute the dataset. Please manually download and unzip `subj01.zip (4GB)` from the [algonauts 2023 challenge](http://algonauts.csail.mit.edu/), please fill in [this form](https://docs.google.com/forms/d/e/1FAIpQLSehZkqZOUNk18uTjRTuLj7UYmRGz-OkdsU25AyO3Wm6iAb0VA/viewform
+We do not have the right to redistribute the dataset. Please manually download and unzip `subj01.zip (4GB)` from the [Algonauts 2023 challenge](http://algonauts.csail.mit.edu/), please fill in [this form](https://docs.google.com/forms/d/e/1FAIpQLSehZkqZOUNk18uTjRTuLj7UYmRGz-OkdsU25AyO3Wm6iAb0VA/viewform
 ) to get the download link.
 
 The provided dataset implementation expect the following contents:
@@ -78,7 +78,7 @@ The brian encoding model training requires PyTorch 2.0, pytorch-lightning and to
 *[conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html)*  - Clone the repository and then create and activate a `brainnet` conda environment using the provided environment definition:
 
 ```shell
-conda env create -f environment.yaml
+conda env create -f conda_env.yaml
 conda activate brainnet
 ```
 
@@ -164,10 +164,10 @@ The code and model weights are licensed under CC-BY-NC. See [`LICENSE.txt`](LICE
 ## BibTeX
 
 ```bibtex
-@article{TODO,
+@article{yang_brain_2023,
   title={Brain Decodes Deep Nets},
   author={Yang, Huzheng and Gee, James and Shi, Jianbo},
   year={2023},
-  journal={arXiv preprint arXiv:TODO},
+  journal={arXiv preprint arXiv:2312.01280},
 }
 ```
