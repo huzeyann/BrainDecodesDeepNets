@@ -16,20 +16,26 @@
 <iframe width="1932" height="881" src="https://www.youtube.com/embed/WX7V2O6SnN4" title="Brain Decodes Deep Nets" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </details> -->
 
-Background: [Algonauts 2023 challenge](http://algonauts.csail.mit.edu/)
+> TL;DR: This is a follow-up work on the [Algonauts 2023 challenge](http://algonauts.csail.mit.edu/) winning methods [Memory Encoding Model](https://github.com/huzeyann/MemoryEncodingModel). However, we go the opposite direction: the challenge is about understanding the brain, this work is using brain data to explain deep nets. 
 
-We developed a tool for visualizing and analyzing large pre-trained vision models by mapping them onto the brain, thus exposing the model's hidden inside. Our innovation arises from **brain encoding model**: predicting brain fMRI measurements in response to images.
+We provide a **plug-in and play** API ([example.ipynb](example.ipynb)) to map your vision model to the brain in 30min. The visualization is a by-product of **brain encoding model**: predicting brain fMRI measurements in response to images.
 
+### Methods
 **Brain encoding model** in a nut shell: 
-1. extract features from pre-trained deep nets
-2. feature selection for each brain voxel
-3. linear regression to predict each brain voxel
+1. *input* image, extract features from pre-trained deep nets
+2. *feature selection* for each brain voxel (FactorTopy)
+3. linear transformation on selected feature, *output* each brain voxel
 
-The brain visualization come from feature selection, each brain voxel asks the question: "which network **layer/space/scale/channel** best predicts my brain response?".
+The intuitive understanding for our visualization is: each brain voxel asks the question, "which network **layer/space/scale/channel** best predicts my brain response?". 
 
-Our visualization shows how different training methods matter: they lead to remarkable differences in hierarchical organization and scaling behavior, growing with more data or model size.
+### Results
+Our analysis and visualization shows:
+1. Inner layer layouts of supervised and un-supervised models are different.
+2. Larger model have less efficient inner layer layout.
+3. Fine-tuning on small datasets change the layer layouts.
 
-> Our API ([example.ipynb](example.ipynb)) is plug-in and play for most image backbone models, it only take 30 min to run.
+
+> **API**: Our API ([example.ipynb](example.ipynb)) is **plug-in and play** for most image backbone models, it only take 30 min to run (RTX4090, 8G VRAM).
 
 
 ![layer_selectors](assets/layer_selectors.png)
@@ -47,8 +53,8 @@ This repository contains:
 
 ## Data preparation
 ### Algonauts 2023
-We do not have the right to redistribute the dataset. Please manually download and unzip `subj01.zip (4GB)` from the [Algonauts 2023 challenge](http://algonauts.csail.mit.edu/), please fill in [this form](https://docs.google.com/forms/d/e/1FAIpQLSehZkqZOUNk18uTjRTuLj7UYmRGz-OkdsU25AyO3Wm6iAb0VA/viewform
-) to get the download link.
+Please manually download and unzip `subj01.zip (4GB)` from the [Algonauts 2023 challenge](http://algonauts.csail.mit.edu/), please fill in [this form](https://docs.google.com/forms/d/e/1FAIpQLSehZkqZOUNk18uTjRTuLj7UYmRGz-OkdsU25AyO3Wm6iAb0VA/viewform
+) to get the download link. 
 
 The provided dataset implementation expect the following contents:
 ```
@@ -108,7 +114,10 @@ trainer.fit(plmodel)
 
 ```
 
-We **strongly recommend** to check out the complete training and visualization example in [example.ipynb](example.ipynb), running this notebook only requires 30 min on RTX4090.
+<!-- We **strongly recommend** to check out the complete training and visualization example in [example.ipynb](example.ipynb), running this notebook only requires 30 min on RTX4090. -->
+> **API**: Our API ([example.ipynb](example.ipynb)) is **plug-in and play** for most image backbone models, it only take 30 min to run (RTX4090, 8G VRAM).
+
+
 
 ![mapping](assets/mapping.png)
 
@@ -151,7 +160,7 @@ class ModifiedDiNOv2(nn.Module):
 ```
 
 ### Automatic caching
-Caching offer speed up by trading memory consumption. `PLModel(cached=True)` will enable automatic caching of local_tokans and global_tokens returned by the image backbone model. The tokens will be computed only once and stay in the RAM (not VRAM), a 12-layer 768-dim model takes ~20G of RAM for caching. No cache will stored to the hard disk, cache will be deleted after running.
+Caching offer speed up by trading memory consumption. `PLModel(cached=True)` will enable automatic caching of local_tokans and global_tokens returned by the image backbone model. The tokens will be computed only once and stay in the RAM (not VRAM), a 12-layer 768-dim model takes ~20G of RAM for caching. No cache will stored to the hard disk, cache is stored in RAM and deleted after running.
 
 ---
 
