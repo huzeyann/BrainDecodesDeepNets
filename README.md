@@ -4,6 +4,9 @@
 
 ### [📄Paper](https://arxiv.org/abs/2312.01280) | [🌐Website](https://huzeyann.github.io/brain-decodes-deep-nets)
 
+We visualize pre-trained vision models by mapping them onto the brain, thus exposing their hidden inside. Visualization is a by-product of brain encoding model: predict brain fMRI measurements in response to images. 
+
+
 ![theory](assets/brainnet.png)
 
 
@@ -16,8 +19,8 @@
 <iframe width="1932" height="881" src="https://www.youtube.com/embed/WX7V2O6SnN4" title="Brain Decodes Deep Nets" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </details> -->
 
-> **TL;DR**: This is a follow-up work on the [Algonauts 2023 challenge](http://algonauts.csail.mit.edu/) winning methods [Memory Encoding Model](https://github.com/huzeyann/MemoryEncodingModel). However, we go the opposite direction: the challenge is about understanding the brain, this work is using brain data to explain deep nets. 
-
+> This is a follow-up work on the [Algonauts 2023 challenge](http://algonauts.csail.mit.edu/) winning methods [Memory Encoding Model](https://github.com/huzeyann/MemoryEncodingModel). However, we go the opposite direction: the challenge is about understanding the brain, this work is using brain data to explain deep nets. 
+ 
 We provide a **plug-in and play** API ([example.ipynb](example.ipynb)) to map your vision model to the brain in 30min. The visualization is a by-product of **brain encoding model**: predicting brain fMRI measurements in response to images.
 
 ### Methods
