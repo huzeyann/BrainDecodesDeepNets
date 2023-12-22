@@ -87,7 +87,7 @@ The brian encoding model training requires PyTorch 2.0, pytorch-lightning and to
 *[conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html)*  - Clone the repository and then create and activate a `brainnet` conda environment using the provided environment definition:
 
 ```shell
-conda env create -f conda_env.yml
+conda env create -f conda_env.yml 
 conda activate brainnet
 ```
 
