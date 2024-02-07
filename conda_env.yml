@@ -33,6 +33,7 @@ dependencies:
     - scipy
     - fast-pytorch-kmeans
     - einops
+    - colorstamps
     - open_clip_torch==2.20.0
     - git+https://github.com/facebookresearch/segment-anything.git@6fdee8f2727f4506cfbbe553e23b895e27956588
     - git+https://github.com/facebookresearch/dinov2.git@ebc1cba1096de0a5388527817cf1e5d4d3896699

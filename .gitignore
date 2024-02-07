@@ -12,7 +12,6 @@ toy.py
 tmp
 core
 *.pkl
-*.pth
 *.pt
 *.npy
 *.npz

@@ -16,16 +16,19 @@ import cortex
 
 
 class PLModel(pl.LightningModule):
-    def __init__(self, config, backbone, cached=True, draw=True):
+    def __init__(self, config, backbone, cached=True, draw=True, skip_data=False):
         super().__init__()
         self.config = config
         self.draw = draw
 
         # dataset
-        self.dataset = BrainDataset(config.DATASET.DATA_DIR, config.DATASET.RESOLUTION)
-        self.train_dataset, self.val_dataset = torch.utils.data.random_split(
-            self.dataset, [9000, 841]
-        )
+        if not skip_data:
+            self.dataset = BrainDataset(
+                config.DATASET.DATA_DIR, config.DATASET.RESOLUTION
+            )
+            self.train_dataset, self.val_dataset = torch.utils.data.random_split(
+                self.dataset, [9000, 841]
+            )
 
         # coordinates
         self.coords = load_coords()[nsdgeneral_indices]
@@ -249,7 +252,7 @@ class PLModel(pl.LightningModule):
         for roi in roi_names:
             # roi_indices
             roi_indices = rh_roi_dict[roi]
-            fsaverage = np.zeros(327684)   # convert fsaverage and nsdgeneral space
+            fsaverage = np.zeros(327684)  # convert fsaverage and nsdgeneral space
             fsaverage[nsdgeneral_indices] = np.arange(nsdgeneral_indices.shape[0])
             roi_indices = fsaverage[roi_indices]
             # pca of weights
