@@ -273,7 +273,7 @@ def make_space_plot(mu, path):
     )
 
     dir_path = os.path.dirname(path)
-    os.makedirs(dir_path, exist_ok=True)
+    # os.makedirs(dir_path, exist_ok=True)
 
     plt.close()
 
@@ -324,7 +324,7 @@ def make_layer_plot(ls, path, cbar_text="layer", reverse=False, overlay=False):
     )
     COLORFUL_PLOT = False
     dir_path = os.path.dirname(path)
-    os.makedirs(dir_path, exist_ok=True)
+    # os.makedirs(dir_path, exist_ok=True)
 
     plt.close()
 
@@ -365,7 +365,7 @@ def make_1d_plot(
     )
     dir_path = os.path.dirname(path)
     # plt.show()
-    os.makedirs(dir_path, exist_ok=True)
+    # os.makedirs(dir_path, exist_ok=True)
     plt.close()
 
     center_crop(path, overlay=overlay)

@@ -2,7 +2,7 @@
 ## Brain Decodes Deep Nets <br><sub> PyTorch Implementation</sub>
 
 
-### [📄Paper](https://arxiv.org/abs/2312.01280) | [🌐Website](https://huzeyann.github.io/brain-decodes-deep-nets)
+### [📄Paper](https://arxiv.org/abs/2312.01280) | [🌐Website](https://huzeyann.github.io/brain-decodes-deep-nets) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://drive.google.com/file/d/158tm5AvCc346SDM1WqxanRjqcJFh5k5X/view?usp=sharing]
 
 We visualize pre-trained vision models by mapping them onto the brain, thus exposing their hidden inside. Visualization is a by-product of brain encoding model: predict brain fMRI measurements in response to images. 
 
