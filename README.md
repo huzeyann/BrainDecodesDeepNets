@@ -95,6 +95,7 @@ conda activate brainnet
 
 ```shell
 docker pull huzeeee/afo:latest
+docker run -it --entrypoint "/bin/bash" --shm-size 64G --gpus all huzeeee/afo:latest
 ```
 
 ## Brain-to-Network Mapping
