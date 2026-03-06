@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Brain Decodes Deep Nets - Visualizing pre-trained vision models by mapping them onto the brain">
-  <meta name="keywords" content="Brain Decodes Deep Nets, CVPR 2024, Brain Encoding, Vision Models">
+  <meta name="description" content="Brain Decodes Deep Nets - CLIP-style models form a brain-aligned hierarchy—and that hierarchy makes them fine-tune better.">
+  <meta name="keywords" content="Brain Decodes Deep Nets, CVPR 2024, Brain Encoding, Vision Models, CLIP, Brain-Aligned Hierarchy">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Brain Decodes Deep Nets</title>
 
@@ -13,87 +13,197 @@
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
 </head>
 <body>
 
-<div class="row">
-  <div class="col-lg-8 offset-lg-2">
-    <div class="text-center">
-      <div style="margin-top: 30px;">
-        <video width="100%" controls muted autoplay loop>
-          <source src="assets/videos/brain_decodes_deep_nets_2min.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-          <iframe width="100%" src="https://www.youtube.com/embed/aKGO7Qd93_w?rel=0&autoplay=1&controls=0&showinfo=0&loop=1" title="[2min paper] Brain Decodes Deep Nets" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </video>
-      </div>
+<!-- Table of Contents Navigation -->
+<nav class="toc-navbar">
+  <div class="toc-container">
+    <ul class="toc-menu">
+      <li><a href="#hero"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#main-finding"><i class="fas fa-star"></i> Main Finding</a></li>
+      <!-- <li><a href="#brain-aligned"><i class="fas fa-brain"></i> Brain-Aligned</a></li> -->
+      <li><a href="#what-is"><i class="fas fa-brain"></i> What is Brain-Aligned?</a></li>
+      <li><a href="#how-measure"><i class="fas fa-chart-line"></i> How we measure</a></li>
+      <!-- <li><a href="#methods"><i class="fas fa-cogs"></i> Methods</a></li> -->
+      <li><a href="#results"><i class="fas fa-chart-bar"></i> Results</a></li>
+      <li><a href="#why-matters"><i class="fas fa-lightbulb"></i> Why it matters</a></li>
+    </ul>
+  </div>
+</nav>
 
-      <h1 style="margin-top: 60px;">Brain Decodes Deep Nets</h1>
-      <div style="margin-top: 0px;">Huzheng Yang &emsp; James Gee* &emsp; Jianbo Shi*</div>
-      <div>University of Pennsylvania</div>
-      <div style="font-size: small;">*: co-advise</div>
+<div class="main-container">
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
 
-      <div style="margin-top: 40px; font-size: large;">
-        <p style="display: inline-block;">
-          CVPR'24 <br/>
-          <a href="https://arxiv.org/abs/2312.01280" style="text-decoration: underline; color: lightblue; margin-right: 10px;">paper</a>
-          <a href="https://github.com/huzeyann/BrainDecodesDeepNets" style="text-decoration: underline; color: lightblue; margin-right: 10px;">code</a>
-          <a href="https://twitter.com/HuzeYann/status/1731921097203790141?s=20" style="text-decoration: underline; color: lightblue;">twitter</a>
-        </p>
-      </div>
 
-      <div style="margin-top: 30px;">
-        <iframe width="100%" height="450" src="https://www.youtube.com/embed/Qh49zQQCW1g" title="[CVPR 2024] Brain Decodes Deep Nets" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
+    <h1 class="hero-title">Brain Decodes Deep Nets</h1>
+    <!-- <h2 class="hero-subtitle">CLIP has a brain-aligned hierarchy—and that's why it fine-tunes without forgetting.</h2> -->
+    <!-- <p class="hero-description">We map model layers onto the visual cortex and show that hierarchical alignment predicts fine-tuning stability.</p> -->
+    
+    <p class="authors">Huzheng Yang &emsp; James Gee* &emsp; Jianbo Shi*</p>
+    <p class="affiliation">University of Pennsylvania</p>
+    <p class="coadvise">*: co-advise</p>
+
+    <div class="links-section">
+      <p class="venue">CVPR'24</p>
+      <p class="links">
+        <a href="https://arxiv.org/abs/2312.01280">paper</a>
+        <a href="https://github.com/huzeyann/BrainDecodesDeepNets">code</a>
+        <a href="https://penno365-my.sharepoint.com/:p:/g/personal/huze_upenn_edu/EVDLndCXy21LpKEelu_MVkMBK9dbFIhlI6VEQzOl4j6eLA?e=eED63x">slides</a>
+        <a href="https://www.youtube.com/watch?v=aKGO7Qd93_w">video</a>
+      </p>
     </div>
 
-    <h2 style="margin-top: 60px;">Main Story</h2>
-    <h3><em>Visualize pre-trained vision models by mapping model onto the brain.</em></h3>
-
-    <h2 style="margin-top: 40px;">Neuroscience Background</h2>
-    <p>Visual brain is organized into regions, each region has specialized functions. For example, V1 does edge-detection and orientation filtering. FFA is face selective - if there's a face, neurons in FFA fire.</p>
-    <p>In the brain, image processing and feature computation are organized in a hierarchical and largely feed-forward fashion. V1 is the initial visual region that physically connected to input from the eyes. Representation in the brain become increasingly abstract from V1 onwards to other regions.</p>
-    <div class="text-center">
-      <img width="100%" align="middle" src="assets/gif/brain_background.gif" border="0">
+    <div class="video-container">
+      <video width="100%" controls muted autoplay loop>
+        <source src="assets/videos/brain_decodes_deep_nets_2min.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+        <iframe width="100%" src="https://www.youtube.com/embed/aKGO7Qd93_w?rel=0&autoplay=1&controls=0&showinfo=0&loop=1" title="[2min paper] Brain Decodes Deep Nets" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </video>
     </div>
 
-    <p style="margin-top: 20px;">Visualization (<em>Brain-to-Network Alignment</em>) is a by-product of brain encoding model, each brain voxel selects:</p>
+    <!-- <div class="video-container">
+      <iframe width="100%" height="450" src="https://www.youtube.com/embed/Qh49zQQCW1g" title="[CVPR 2024] Brain Decodes Deep Nets" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div> -->
+  </section>
+
+  <!-- Main Finding -->
+  <section id="main-finding" class="content-section">
+    <h2 class="section-title">Main Finding</h2>
+    <p><strong>A "brain-like" hierarchy is not just an interpretability story—it predicts fine-tuning robustness.</strong></p>
+    <p>Across models, the ones that exhibit a clean early→late alignment with the visual hierarchy (V1/V2 → mid-level areas → high-level regions) are the same ones that <strong>preserve useful representations under adaptation</strong>, and <strong>less forgetting</strong> during fine-tuning.</p>
+  </section>
+
+  <!-- Brain-Aligned Hierarchy
+  <section id="brain-aligned" class="content-section">
+    <h2 class="section-title">CLIP-style models form a brain-aligned hierarchy—and that hierarchy makes them fine-tune better.</h2>
+    <p>We use human visual cortex as a reference frame to <strong>visualize where a model's computation lives</strong>: which layers, spatial scales, and channels best explain each brain region's response to images. This reveals a consistent pattern in strong contrastive models like <strong>CLIP</strong>:</p>
+    <ul>
+      <li><strong>Intermediate layers are most brain-aligned</strong></li>
+      <li><strong>Early→late model layers map onto early→higher visual regions</strong></li>
+      <li><strong>Models with a clear hierarchy suffer less catastrophic forgetting when fine-tuned</strong></li>
+    </ul>
+  </section> -->
+
+  <!-- What is brain-aligned hierarchy -->
+  <section id="what-is" class="content-section">
+    <h2 class="section-title">What is "brain-aligned hierarchy"?</h2>
+    <p>We say a model has a brain-aligned hierarchy when:</p>
     <ol>
-      <li>"which <strong>layer</strong> best predicts my brain response?"</li>
-      <li>"which <strong>space</strong> best predicts my brain response?"</li>
-      <li>"which <strong>scale</strong> best predicts my brain response?"</li>
-      <li>"which <strong>channel</strong> best predicts my brain response?"</li>
+      <li><strong>Early layers</strong> best predict responses in <strong>early visual cortex</strong> (low-level structure)</li>
+      <li><strong>Intermediate layers</strong> best predict <strong>mid-level</strong> regions</li>
+      <li><strong>Later layers</strong> best predict <strong>high-level</strong> regions (semantic selectivity)</li>
     </ol>
-    <div class="text-center">
-      <img width="100%" align="middle" src="assets/custom_images/bddn_fig1_v2.png" border="0">
+    <p>In CLIP-like models, this mapping is especially pronounced in the <strong>intermediate stages</strong>, suggesting those layers are where transferable, brain-consistent abstractions emerge.</p>
+
+    <div class="image-container">
+      <img width="100%" src="assets/gif/brain_background.gif" alt="Visual brain hierarchy">
+    </div>
+  </section>
+
+  <!-- How we measure -->
+  <section id="how-measure" class="content-section">
+    <h2 class="section-title">How we measure it</h2>
+    <p>We train a brain encoding model to predict voxel responses from a frozen vision network's features. During training, each voxel learns <em>where</em> in the network it "reads from":</p>
+    <ul>
+      <li><strong>Layer</strong> (which model depth)</li>
+      <li><strong>Space / receptive field</strong> (which image region)</li>
+      <li><strong>Scale</strong> (patch vs class tokens)</li>
+      <li><strong>Channel</strong> (which feature subspace)</li>
+    </ul>
+    <p>After training, we turn these learned selectors into a <strong>network-on-brain visualization</strong>: each voxel is colored by its best-matching layer.</p>
+
+    <div class="image-container">
+      <img width="100%" src="assets/custom_images/bddn_fig1_v2.png" alt="Network on brain visualization">
     </div>
     <blockquote>
       The intuitive understanding for our visualization is: each brain voxel asks the question, "which network <em>layer/space/scale/channel</em> best predicts my brain response?".
     </blockquote>
+    <div class="image-container">
+      <img width="100%" src="assets/custom_images/learning.gif" alt="Learning process animation">
+    </div>
+  </section>
 
-    <h2 style="margin-top: 40px;">Methods</h2>
-    <p><em>Brain encoding model</em> over-simplified:</p>
-    <ol>
-      <li><em>input</em> image, extract features from pre-trained deep nets</li>
-      <li><em>feature selection</em> for each brain voxel</li>
-      <li>linear regression on selected features, <em>output</em> each brain voxel</li>
-    </ol>
-    <div class="text-center">
-      <img width="100%" align="middle" src="assets/custom_images/learning.gif" border="0">
+  <!-- Results -->
+  <section id="results" class="content-section">
+    <h2 class="section-title">Results</h2>
+    
+    <h3 class="section-subtitle">1) CLIP shows a clean hierarchical alignment</h3>
+    <p>CLIP exhibits a strong early→late mapping onto the visual hierarchy, with the <strong>peak alignment often in intermediate layers</strong>.</p>
+    
+    <div class="image-container">
+      <img width="100%" src="assets/custom_images/brain_align.jpg" alt="Layer selectors visualization">
+      <p class="figure-caption">
+        <strong>CLIP</strong>: Best-matching layer shows an early→late hierarchy aligned with the brain's hierarchy;
+        <strong>ImageNet</strong>: Last layer maps to the middle level brain regions;
+        <strong>SAM</strong>: Last layer maps to the low level brain regions.
+      </p>
     </div>
 
-    <h2 style="margin-top: 40px;">Results</h2>
-    <div class="text-center">
-      <img width="100%" align="middle" src="assets/custom_images/layer_selectors.png" border="0">
+    <h3 class="section-subtitle">2) Hierarchy predicts fine-tuning robustness</h3>
+    <p>When we fine-tune models on downstream tasks, models with stronger brain-aligned hierarchy show:</p>
+    <ul>
+      <li><strong>less catastrophic forgetting</strong></li>
+      <li><strong>more stable intermediate layer</strong></li>
+      <li><strong>better retention of general-purpose features</strong></li>
+    </ul>
+    <p>Interpretation: a well-formed hierarchy provides a "stable scaffold" that downstream objectives can adapt.</p>
+
+    <div class="image-container">
+      <img width="100%" src="assets/custom_images/finetune_clip.jpg" alt="Finetuning results">
     </div>
-    <div class="text-center" style="margin-top: 20px;">
-      <img width="100%" align="middle" src="assets/custom_images/channel_big.png" border="0">
+    <div class="image-container">
+      <img width="100%" src="assets/custom_images/finetune_dino.jpg" alt="Finetuning results">
     </div>
-  </div>
+  </section>
+
+  <!-- Why it matters -->
+  <section id="why-matters" class="content-section">
+    <h2 class="section-title">Why this matters</h2>
+    <p><strong>Downstream accuracy alone can't tell you <em>how</em> a model is organized—or how fragile it will be under adaptation.</strong></p>
+    <p>Brain-aligned hierarchy gives a practical diagnostic:</p>
+    <ul>
+      <li><em>Which models learn transferable mid-level abstractions?</em></li>
+      <li><em>Which models will fine-tune without collapsing their representations?</em></li>
+      <li><em>Where in the network does task-relevant information actually live?</em></li>
+    </ul>
+  </section>
 </div>
+
+<script>
+// Add active state to TOC links based on scroll position
+document.addEventListener('DOMContentLoaded', function() {
+  const sections = document.querySelectorAll('section[id]');
+  const tocLinks = document.querySelectorAll('.toc-navbar .toc-menu li a');
+
+  function setActiveLink() {
+    let scrollPos = window.scrollY + 150;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+
+      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+        tocLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + sectionId) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', setActiveLink);
+  setActiveLink();
+});
+</script>
 
 </body>
 </html>
