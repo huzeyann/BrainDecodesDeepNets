@@ -65,6 +65,11 @@ body {
   letter-spacing: -0.02em;
 }
 
+.hero-title .hero-brain-icon {
+  margin-right: 0.4rem;
+  color: #3273dc;
+}
+
 .hero-subtitle {
   font-family: 'Google Sans', sans-serif;
   font-size: 1.4rem;
