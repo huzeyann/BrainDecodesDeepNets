@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Brain Decodes Deep Nets - Visualizing pre-trained vision models by mapping them onto the brain">
+  <meta name="keywords" content="Brain Decodes Deep Nets, CVPR 2024, Brain Encoding, Vision Models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brain Decodes Deep Nets</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+<body>
+
+<div class="row">
+  <div class="col-lg-8 offset-lg-2">
+    <div class="text-center">
+      <div style="margin-top: 30px;">
+        <video width="100%" controls muted autoplay loop>
+          <source src="assets/videos/brain_decodes_deep_nets_2min.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+          <iframe width="100%" src="https://www.youtube.com/embed/aKGO7Qd93_w?rel=0&autoplay=1&controls=0&showinfo=0&loop=1" title="[2min paper] Brain Decodes Deep Nets" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </video>
+      </div>
+
+      <h1 style="margin-top: 60px;">Brain Decodes Deep Nets</h1>
+      <div style="margin-top: 0px;">Huzheng Yang &emsp; James Gee* &emsp; Jianbo Shi*</div>
+      <div>University of Pennsylvania</div>
+      <div style="font-size: small;">*: co-advise</div>
+
+      <div style="margin-top: 40px; font-size: large;">
+        <p style="display: inline-block;">
+          CVPR'24 <br/>
+          <a href="https://arxiv.org/abs/2312.01280" style="text-decoration: underline; color: lightblue; margin-right: 10px;">paper</a>
+          <a href="https://github.com/huzeyann/BrainDecodesDeepNets" style="text-decoration: underline; color: lightblue; margin-right: 10px;">code</a>
+          <a href="https://twitter.com/HuzeYann/status/1731921097203790141?s=20" style="text-decoration: underline; color: lightblue;">twitter</a>
+        </p>
+      </div>
+
+      <div style="margin-top: 30px;">
+        <iframe width="100%" height="450" src="https://www.youtube.com/embed/Qh49zQQCW1g" title="[CVPR 2024] Brain Decodes Deep Nets" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 60px;">Main Story</h2>
+    <h3><em>Visualize pre-trained vision models by mapping model onto the brain.</em></h3>
+
+    <h2 style="margin-top: 40px;">Neuroscience Background</h2>
+    <p>Visual brain is organized into regions, each region has specialized functions. For example, V1 does edge-detection and orientation filtering. FFA is face selective - if there's a face, neurons in FFA fire.</p>
+    <p>In the brain, image processing and feature computation are organized in a hierarchical and largely feed-forward fashion. V1 is the initial visual region that physically connected to input from the eyes. Representation in the brain become increasingly abstract from V1 onwards to other regions.</p>
+    <div class="text-center">
+      <img width="100%" align="middle" src="assets/gif/brain_background.gif" border="0">
+    </div>
+
+    <p style="margin-top: 20px;">Visualization (<em>Brain-to-Network Alignment</em>) is a by-product of brain encoding model, each brain voxel selects:</p>
+    <ol>
+      <li>"which <strong>layer</strong> best predicts my brain response?"</li>
+      <li>"which <strong>space</strong> best predicts my brain response?"</li>
+      <li>"which <strong>scale</strong> best predicts my brain response?"</li>
+      <li>"which <strong>channel</strong> best predicts my brain response?"</li>
+    </ol>
+    <div class="text-center">
+      <img width="100%" align="middle" src="assets/custom_images/bddn_fig1_v2.png" border="0">
+    </div>
+    <blockquote>
+      The intuitive understanding for our visualization is: each brain voxel asks the question, "which network <em>layer/space/scale/channel</em> best predicts my brain response?".
+    </blockquote>
+
+    <h2 style="margin-top: 40px;">Methods</h2>
+    <p><em>Brain encoding model</em> over-simplified:</p>
+    <ol>
+      <li><em>input</em> image, extract features from pre-trained deep nets</li>
+      <li><em>feature selection</em> for each brain voxel</li>
+      <li>linear regression on selected features, <em>output</em> each brain voxel</li>
+    </ol>
+    <div class="text-center">
+      <img width="100%" align="middle" src="assets/custom_images/learning.gif" border="0">
+    </div>
+
+    <h2 style="margin-top: 40px;">Results</h2>
+    <div class="text-center">
+      <img width="100%" align="middle" src="assets/custom_images/layer_selectors.png" border="0">
+    </div>
+    <div class="text-center" style="margin-top: 20px;">
+      <img width="100%" align="middle" src="assets/custom_images/channel_big.png" border="0">
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
